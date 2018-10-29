@@ -1,0 +1,27 @@
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 0px;
+	margin: 0px;
+}
+h1{
+	font-variant: small-caps;
+}
+table.resorts{
+	border-top: solid 5px;
+	border-color: #87cefa;
+	background: url(http://s4894.pcdn.co/wp-content/uploads/2013/01/Adodds_20120306_FW_00041.jpg);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	display: block;
+}
+tr.resorts{
+	height: 100px;
+}
+th.resorts{
+	font-size: 30px;
+	color: #87cefa;
+	padding: 40px;
+}
