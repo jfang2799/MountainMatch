@@ -11,13 +11,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, Type, Lenth, Latitude, Longitude, Trail FROM features";
-$result = $conn->query($sql);
+$trails_query = "SELECT * FROM trails";
+$features_query = "SELECT * FROM features";
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Trail: " . $row["Trail"]. " (" . $row["Latitude"]. ", " . $row["Latitude"] . ") <br>";
+$trails = $conn->query($trails_query);
+$features = $conn->query($features_query);
+
+if ($trails->num_rows > 0 && $features->num_rows > 0) {
+    echo "<h1>FEATURES</h1>";
+    while($row = $features->fetch_assoc()) {
+        echo "id: " . $row["ID"]. " - Trail: " . $row["Trail"]. " (" . $row["Latitude"]. ", " . $row["Longitude"] . ") <br>";
+    }
+
+    echo "</br>";
+    echo "<h1>TRAILS</h1>";
+    while($row = $trails->fetch_assoc()) {
+        echo $row["Name"]. "    Difficulty: " . $row["Difficulty"]. "    Accuracy:  " . $row["Accuracy"] . ") <br>";
     }
 } else {
     echo "0 results";
