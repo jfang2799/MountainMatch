@@ -14,7 +14,7 @@ function displayeasy($feature){
 	$text += "<td>" + $feature['latitude']+"</td>";
 	$text += "<td>" + $feature['longitude']+"</td>";     
 	$text +="</tr>";
-	return $text
+	return $text;
 }
 
 function displayurban($feature){
@@ -51,7 +51,7 @@ function displaytrail($trail){
 	$text += "<td>" + $trail['latitude']+"</td>";
 	$text += "<td>" + $trail['longitude']+"</td>";     
 	$text +="</tr>";
-	return $text
+	return $text;
 }
 
 ?>
