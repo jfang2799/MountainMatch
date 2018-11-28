@@ -10,47 +10,47 @@ $connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displayeasy($feature){
 	$text = "<tr>";
-	$text += "<td>" + $feature['type'] + "</td>";
-	$text += "<td>" + $feature['latitude']+"</td>";
-	$text += "<td>" + $feature['longitude']+"</td>";     
-	$text +="</tr>";
+	$text .= "<td>" . $feature['type'] . "</td>";
+	$text .= "<td>" . $feature['latitude'] . "</td>";
+	$text .= "<td>" . $feature['longitude']."</td>";
+	$text .="</tr>";
 	return $text;
 }
 
 function displayurban($feature){
 	$text = "<tr>";
-	$text += "<td>" + $feature['type'] + "</td>";
-	if ($$feature['lip']){
-		$text +="<td>Lip</td>";
+	$text .= "<td>" . $feature['type'] . "</td>";
+	if ($feature['lip']){
+		$text .="<td>Lip</td>";
 	}
 	else{
-		$text +="<td>No Lip</td>";
+		$text .="<td>No Lip</td>";
 	}
-	$text += "<td>" + $feature['latitude']+"</td>";
-	$text += "<td>" + $feature['longitude']+"</td>";     
-	$text +="</tr>";
+	$text .= "<td>" . $feature['latitude'] . "</td>";
+	$text .= "<td>" . $feature['longitude'] . "</td>";
+	$text .="</tr>";
 	return $text;
 }
 
 function displayjump($jump){
 	$text = "<tr>";
-	$text += "<td>" + $jump['type'] + "</td>";
-	$text += "<td>" + $jump['size']+"</td>";
-	$text += "<td>" + $jump['latitude']+"</td>";
-	$text += "<td>" + $jump['longitude']+"</td>";     
-	$text +="</tr>";
+	$text .= "<td>" . $jump['type'] . "</td>";
+	$text .= "<td>" . $jump['size'] . "</td>";
+	$text .= "<td>" . $jump['latitude'] . "</td>";
+	$text .= "<td>" . $jump['longitude'] . "</td>";
+	$text .="</tr>";
 	return $text;
 }
 
 function displaytrail($trail){
 	$text = "<tr>";
-	$text += "<td>" + $trail['name'] + "</td>";
-	$text += "<td>" + $trail['length']+"</td>";
-	$text += "<td>" + $trail['difficulty']+"</td>";
-	$text += "<td>" + $trail['accuracy']+"</td>";
-	$text += "<td>" + $trail['latitude']+"</td>";
-	$text += "<td>" + $trail['longitude']+"</td>";     
-	$text +="</tr>";
+	$text .= "<td>" . $trail['name'] . "</td>";
+	$text .= "<td>" . $trail['length'] . "</td>";
+	$text .= "<td>" . $trail['difficulty'] . "</td>";
+	$text .= "<td>" . $trail['accuracy'] . "</td>";
+	$text .= "<td>" . $trail['latitude'] . "</td>";
+	$text .= "<td>" . $trail['longitude'] . "</td>";
+	$text .="</tr>";
 	return $text;
 }
 
