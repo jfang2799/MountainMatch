@@ -20,26 +20,26 @@ function displayeasy($feature){
 function displayurban($feature){
 	$text = "<tr>";
 	$text += "<td>" + $feature['type'] + "</td>";
-	if ($['lip']){
-		$text +="<td>Lip</td>"
+	if ($$feature['lip']){
+		$text +="<td>Lip</td>";
 	}
 	else{
-		$text +="<td>No Lip</td>"
+		$text +="<td>No Lip</td>";
 	}
 	$text += "<td>" + $feature['latitude']+"</td>";
 	$text += "<td>" + $feature['longitude']+"</td>";     
 	$text +="</tr>";
-	return $text
+	return $text;
 }
 
 function displayjump($jump){
 	$text = "<tr>";
 	$text += "<td>" + $jump['type'] + "</td>";
 	$text += "<td>" + $jump['size']+"</td>";
-	$text += "<td>" + $jump['latitude']+"</td>"
+	$text += "<td>" + $jump['latitude']+"</td>";
 	$text += "<td>" + $jump['longitude']+"</td>";     
 	$text +="</tr>";
-	return $text
+	return $text;
 }
 
 function displaytrail($trail){
@@ -47,7 +47,7 @@ function displaytrail($trail){
 	$text += "<td>" + $trail['name'] + "</td>";
 	$text += "<td>" + $trail['length']+"</td>";
 	$text += "<td>" + $trail['difficulty']+"</td>";
-	$text += "<td>" + $trail['accuracy']+"</td>"
+	$text += "<td>" + $trail['accuracy']+"</td>";
 	$text += "<td>" + $trail['latitude']+"</td>";
 	$text += "<td>" + $trail['longitude']+"</td>";     
 	$text +="</tr>";
