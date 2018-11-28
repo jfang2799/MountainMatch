@@ -5,8 +5,8 @@
 $servername = "";
 $username = "";
 $password = "";
-
-$connection = mysqli_connect($servername,$username,$password);
+$dbname = "mount_snow";
+$connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displayeasy($feature){
 	$text = "<tr>";
@@ -72,8 +72,9 @@ function displaytrail($trail){
 				<th>Longitude</th>
 			</tr>
 			<?php
-				$beginner = "SELECT * FROM features WHERE urban='false'";
-				while($row = mysql_fetch_array($beginner)){
+				$beginner_query = "SELECT * FROM features WHERE urban='false'";
+				$beginner = $connection->query($beginner_query);
+				while($row = $beginner->fetch_assoc()){
 					echo displayeasy($row);
 				}
 			?>
@@ -87,8 +88,9 @@ function displaytrail($trail){
 				<th>Longitude</th>
 			</tr>
 			<?php
-				$advanced = "SELECT * FROM features where urban='true'";
-				while($row = mysql_fetch_array($advanced)){
+				$advanced_query = "SELECT * FROM features where urban='true'";
+				$advanced = $connection->query($advanced_query);
+				while($row = $advanced->fetch_assoc()){
 					echo displayurban($row);
 				}
 			?>
@@ -100,8 +102,9 @@ function displaytrail($trail){
 			<th>Latitude</th>
 			<th>Longitude</th>
 			<?php
-				$jumps = "SELECT * FROM jumps";
-				while($row = mysql_fetch_array($jumps)){
+				$jumps_query = "SELECT * FROM jumps";
+				$jumps = $connection->query($jumps_query);
+				while($row = $jumps->fetch_assoc()){
 					echo displayjump($row);
 				}
 			?>
@@ -115,8 +118,9 @@ function displaytrail($trail){
 			<th>Latitude</th>
 			<th>Longitude</th>
 			<?php
-				$trails = "SELECT * FROM trails";
-				while($row = mysql_ftech_array($trails)){
+				$trails_query = "SELECT * FROM trails";
+				$trails = $connection->query($trails_query);
+				while($row = $trails->fetch_assoc()){
 					echo displaytrail($row);
 				}
 			?>
