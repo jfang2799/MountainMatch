@@ -1,10 +1,9 @@
 <?php
 
-//Connect to the Database
-
-$servername = "";
-$username = "";
-$password = "";
+// mysql credentials on VM
+$servername = "localhost";
+$username = "mountain-match";
+$password = "ITWS2018";
 $dbname = "mount_snow";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
