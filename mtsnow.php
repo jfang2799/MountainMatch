@@ -2,9 +2,9 @@
 
 // mysql credentials on VM
 $servername = "localhost";
-$username = "mountain-match";
-$password = "ITWS2018";
-$dbname = "mount_snow";
+$username = "root";
+$password = "[database password]";
+$dbname = "mountain-match";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displayeasy($feature){
@@ -54,14 +54,34 @@ function displaytrail($trail){
 }
 
 ?>
-
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <?php
+            $API_KEY = 'AIzaSyCOfSiqqnUTSjs8aYPEWr7Bs0T2Q16ain0';
+            echo "<script src='https://maps.googleapis.com/maps/api/js?key=$API_KEY'></script>"
+        ?>
 		<title>Mount Snow</title>
 	</head>
-	<h1>Mount Snow</h1>	
+	<h1>Mount Snow</h1>
+    <div id="map"></div>
+    <script src="./js/map.js"></script>
+
 	<form action="loadinfo.php" method="POST">
 		<h2>Ride-On Features</h2>
 		<table id = "beginner">
