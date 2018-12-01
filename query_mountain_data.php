@@ -9,7 +9,7 @@
     // check what information the user want to query
     switch ($_GET["request"]) {
         case "beginner":
-            $beginner_query = "SELECT * FROM features WHERE urban='false'";
+            $beginner_query = "SELECT * FROM features WHERE urban='0'";
             $beginner = $connection->query($beginner_query);
             echo "[";
             echo json_encode($beginner->fetch_assoc());
@@ -21,7 +21,7 @@
             break;
 
         case "advanced":
-            $advanced_query = "SELECT * FROM features where urban='true'";
+            $advanced_query = "SELECT * FROM features where urban='1'";
             $advanced = $connection->query($advanced_query);
             echo "[";
             echo json_encode($advanced->fetch_assoc());
