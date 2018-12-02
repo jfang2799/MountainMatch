@@ -1,4 +1,7 @@
 let map;
+let jumps = [];
+let beginner = [];
+let advanced = [];
 
 function initialize() {
     let mapOptions = {
@@ -9,14 +12,12 @@ function initialize() {
         mapOptions);
 
     // only fetch data/set markers once map is initialzed
-    get_data("jumps");
-    get_data("beginner");
-    get_data("advanced");
-    //get_data("trails");
+    drop_pins("jumps", jumps);
+    drop_pins("beginner", beginner);
+    drop_pins("advanced", advanced);
 }
 
 function place_marker(element, label) {
-    //console.log(element);
     let marker = new google.maps.Marker({
         label: label,
         position: {lat: parseFloat(element.latitude),
@@ -41,20 +42,70 @@ function place_marker(element, label) {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
     });
+    return marker;
 }
 
-function get_data(request_type) {
+// add pins to map
+function add_pins(pins)
+{
+    for (let i = 0; i < pins.length; i++)
+    {
+        pins[i].setMap(map);
+    }
+}
+
+// remove pins from map
+function remove_pins(pins) {
+    for (let i = 0; i < pins.length; i++)
+    {
+        pins[i].setMap(null);
+    }
+}
+
+function update_pins() {
+    let jumps_checkbox = document.getElementById("jumps");
+    let beginner_checkbox = document.getElementById("beginner");
+    let advanced_checkbox = document.getElementById("advanced");
+    if (jumps_checkbox.checked)
+    {
+        add_pins(jumps);
+    }
+    else
+    {
+        remove_pins(jumps);
+    }
+
+    if (beginner_checkbox.checked)
+    {
+        add_pins(beginner);
+    }
+    else
+    {
+       remove_pins(beginner);
+    }
+
+    if (advanced_checkbox.checked)
+    {
+        add_pins(advanced);
+    }
+    else
+    {
+        remove_pins(advanced);
+    }
+}
+
+// create markers for each feature in DB
+function drop_pins(type, markers) {
     let oReq = new XMLHttpRequest();
     oReq.onload = function() {
         let data = JSON.parse(this.responseText);
-        console.log(data);
         for(let i = 0; i < data.length; i++) {
-            place_marker(data[i], request_type[0].toUpperCase());
+            markers.push(place_marker(data[i], type[0].toUpperCase()));
         }
     };
 
     // grab JSON encoded data from database
-    oReq.open("get", "./query_mountain_data.php?request="+request_type, true);
+    oReq.open("get", "./query_mountain_data.php?request="+type, true);
     oReq.send();
 }
 

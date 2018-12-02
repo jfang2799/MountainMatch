@@ -43,17 +43,5 @@
             }
             echo "]";
             break;
-
-        case "trails":
-            $trails_query = "SELECT * FROM trails";
-            $trails = $connection->query($trails_query);
-            echo "[";
-            echo json_encode($trails->fetch_assoc());
-            while($row = $trails->fetch_assoc()){
-                echo ",";
-                echo json_encode($row);
-            }
-            echo "]";
-            break;
     }
 ?>
