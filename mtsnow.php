@@ -7,29 +7,25 @@ $dbname = "mountain-match";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displaytrail($trail){
+    global $connection;
     $text = "<button class='accordion'> <strong>" . $trail['name'] . " </strong>";
-
+    $text .= "(" . $trail['length'] . "ft)";
     // trails are rated 1 -5 on difficulty. Indicate rating with skulls
     $text .= " &nbsp;&nbsp;&nbsp;&nbsp;";
     for ($i = 0; $i < 5; $i++) {
-        // red skulls to indicate difficulty
         if ($i < (int)$trail['difficulty']) {
             $text .= "<span class='fa fa-skull hard'></span> ";
         }
-        // black skulls to fill out spacing
         else {
             $text .= "<span class='fa fa-skull'></span> ";
         }
     }
-
     // indicate rating accuracy with crosshairs
     $text .= " &nbsp;&nbsp;&nbsp;&nbsp;";
     for ($i = 0; $i < 5; $i++) {
-        // green crosshairs to indicate difficulty accurate
         if ($i < (int)$trail['accuracy']) {
             $text .= "<span class='fa fa-crosshairs accurate'></span> ";
         }
-        // black to fill out spacing
         else {
             $text .= "<span class='fa fa-crosshairs'></span> ";
         }
@@ -37,19 +33,52 @@ function displaytrail($trail){
     $text .= "</button>";
 
     $text .= "<div class='panel'>";
-    $text .= "<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";
+    $text .= "<table class='feature-table'>";
+    $text .= "<th>Type</th> <th>Size</th> <th>Urban</th> <th>Lip</th>";
+
+    $trail_name = $trail['name'];
+    $related_features_query = "SELECT type, null as size, urban, lip  
+                               FROM features 
+                               WHERE trail = '$trail_name' 
+                               UNION 
+                               SELECT type, size, null as urban, null as lip 
+                               FROM jumps 
+                               WHERE trail = '$trail_name'";
+    $related_features = $connection->query($related_features_query);
+    if ($related_features) {
+        while ($row = $related_features->fetch_assoc()) {
+            $text .= generatetable($row);
+        }
+    }
+
+    $text .= "</table>";
     $text .= "</div>";
 	return $text;
 }
 
-function displaytrailtable($trail){
+function generatetable($feature){
     $text = "<tr>";
-    $text .= "<td>" . $trail['name'] . "</td>";
-    $text .= "<td>" . $trail['length'] . "</td>";
-    $text .= "<td>" . $trail['difficulty'] . "</td>";
-    $text .= "<td>" . $trail['accuracy'] . "</td>";
-    $text .= "<td>" . $trail['latitude'] . "</td>";
-    $text .= "<td>" . $trail['longitude'] . "</td>";
+    $text .= "<td>" . $feature['type'] . "</td>";
+    if ($feature['size'] != null) {
+        $text .= "<td>" . $feature['size'] . "</td>";
+    }
+    else {
+        $text .= "<td> NA </td>";
+    }
+
+    if ($feature['urban'] != null) {
+        $text .= "<td>" . ($feature['urban'] == '1' ? 'Yes' : 'No')  . "</td>";
+    }
+    else {
+        $text .= "<td> NA </td>";
+    }
+
+    if ($feature['lip'] != null) {
+        $text .= "<td>" . ($feature['lip'] == '1' ? 'Yes' : 'No') . "</td>";
+    }
+    else {
+        $text .= "<td> NA </td>";
+    }
     $text .="</tr>";
     return $text;
 }

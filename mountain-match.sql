@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 03, 2018 at 05:55 PM
+-- Generation Time: Dec 05, 2018 at 09:29 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -33,17 +33,18 @@ CREATE TABLE `features` (
   `longitude` double DEFAULT NULL,
   `type` varchar(20) DEFAULT NULL,
   `lip` tinyint(1) DEFAULT NULL,
-  `urban` tinyint(1) DEFAULT NULL
+  `urban` tinyint(1) DEFAULT NULL,
+  `trail` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `features`
 --
 
-INSERT INTO `features` (`latitude`, `longitude`, `type`, `lip`, `urban`) VALUES
-(42.96581221408568, -72.90638688951731, 'Easy', 0, 0),
-(42.956470850771694, -72.90882367640735, 'Hard (Without Lip)', 0, 1),
-(42.9591482463886, -72.89613858796658, 'Hard (With Lip)', 1, 1);
+INSERT INTO `features` (`latitude`, `longitude`, `type`, `lip`, `urban`, `trail`) VALUES
+(42.96581221408568, -72.90638688951731, 'Easy', 0, 0, 'easy_accurate'),
+(42.956470850771694, -72.90882367640735, 'Hard (Without Lip)', 0, 1, 'hard_accurate'),
+(42.9591482463886, -72.89613858796658, 'Hard (With Lip)', 1, 1, 'hard_accurate');
 
 -- --------------------------------------------------------
 
@@ -55,16 +56,17 @@ CREATE TABLE `jumps` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `type` varchar(20) DEFAULT NULL,
-  `size` int(11) NOT NULL
+  `size` int(11) NOT NULL,
+  `trail` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jumps`
 --
 
-INSERT INTO `jumps` (`latitude`, `longitude`, `type`, `size`) VALUES
-(42.95686640058241, -72.8965998440981, 'Big Jump', 1000),
-(42.96206303133158, -72.90386326611042, 'Small Jump', 10);
+INSERT INTO `jumps` (`latitude`, `longitude`, `type`, `size`, `trail`) VALUES
+(42.95686640058241, -72.8965998440981, 'Big Jump', 1000, 'hard_accurate'),
+(42.96206303133158, -72.90386326611042, 'Small Jump', 10, 'hard_innacurate');
 
 -- --------------------------------------------------------
 
