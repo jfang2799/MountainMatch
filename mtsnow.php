@@ -7,10 +7,37 @@ $dbname = "mountain-match";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displaytrail($trail){
-    $text = "<button class='accordion'> <strong>"
-        . $trail['name'] . " </strong> </button>";
+    $text = "<button class='accordion'> <strong>" . $trail['name'] . " </strong>";
+
+    // trails are rated 1 -5 on difficulty. Indicate rating with skulls
+    $text .= " &nbsp;&nbsp;&nbsp;&nbsp;";
+    for ($i = 0; $i < 5; $i++) {
+        // red skulls to indicate difficulty
+        if ($i < (int)$trail['difficulty']) {
+            $text .= "<span class='fa fa-skull hard'></span> ";
+        }
+        // black skulls to fill out spacing
+        else {
+            $text .= "<span class='fa fa-skull'></span> ";
+        }
+    }
+
+    // indicate rating accuracy with crosshairs
+    $text .= " &nbsp;&nbsp;&nbsp;&nbsp;";
+    for ($i = 0; $i < 5; $i++) {
+        // green crosshairs to indicate difficulty accurate
+        if ($i < (int)$trail['accuracy']) {
+            $text .= "<span class='fa fa-crosshairs accurate'></span> ";
+        }
+        // black to fill out spacing
+        else {
+            $text .= "<span class='fa fa-crosshairs'></span> ";
+        }
+    }
+    $text .= "</button>";
+
     $text .= "<div class='panel'>";
-    $text .= "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";
+    $text .= "<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";
     $text .= "</div>";
 	return $text;
 }
@@ -32,6 +59,7 @@ function displaytrailtable($trail){
 <html lang="en">
 	<head>
         <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <?php
             $API_KEY = 'AIzaSyCOfSiqqnUTSjs8aYPEWr7Bs0T2Q16ain0';
             echo "<script src='https://maps.googleapis.com/maps/api/js?key=$API_KEY'></script>"
@@ -63,7 +91,8 @@ function displaytrailtable($trail){
 
         <div id="trails">
             <h2>Trails</h2>
-
+            <h5><span class='fa fa-skull hard'></span> = Difficulty (1 - 5)</h5>
+            <h5><span class='fa fa-crosshairs accurate'></span> = Accuracy (1 - 5)</h5>
             <?php
             $trails_query = "SELECT * FROM trails";
             $trails = $connection->query($trails_query);
@@ -75,30 +104,4 @@ function displaytrailtable($trail){
             <script src="./js/accordian.js"></script>
         </div>
     </div>
-
-    <!--
-    <div id="trails">
-        <h2>Trails</h2>
-        <table>
-            <th>Name</th>
-            <th>Length</th>
-            <th>Difficulty</th>
-            <th>Rating Accuracy</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <?php
-                /*
-                $trails_query = "SELECT * FROM trails";
-                $trails = $connection->query($trails_query);
-                while($row = $trails->fetch_assoc()){
-                    echo displaytrailtable($row);
-                }
-                */
-            ?>
-        </table>
-    </div>
-    -->
-
-
-
 </html>
