@@ -7,15 +7,24 @@ $dbname = "mountain-match";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
 function displaytrail($trail){
-	$text = "<tr>";
-	$text .= "<td>" . $trail['name'] . "</td>";
-	$text .= "<td>" . $trail['length'] . "</td>";
-	$text .= "<td>" . $trail['difficulty'] . "</td>";
-	$text .= "<td>" . $trail['accuracy'] . "</td>";
-	$text .= "<td>" . $trail['latitude'] . "</td>";
-	$text .= "<td>" . $trail['longitude'] . "</td>";
-	$text .="</tr>";
+    $text = "<button class='accordion'> <strong>"
+        . $trail['name'] . " </strong> </button>";
+    $text .= "<div class='panel'>";
+    $text .= "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";
+    $text .= "</div>";
 	return $text;
+}
+
+function displaytrailtable($trail){
+    $text = "<tr>";
+    $text .= "<td>" . $trail['name'] . "</td>";
+    $text .= "<td>" . $trail['length'] . "</td>";
+    $text .= "<td>" . $trail['difficulty'] . "</td>";
+    $text .= "<td>" . $trail['accuracy'] . "</td>";
+    $text .= "<td>" . $trail['latitude'] . "</td>";
+    $text .= "<td>" . $trail['longitude'] . "</td>";
+    $text .="</tr>";
+    return $text;
 }
 ?>
 
@@ -32,6 +41,7 @@ function displaytrail($trail){
 	<h1 class="title">Mount Snow</h1>
     <div>
         <div id="map"></div>
+
         <script src="./js/map.js"></script>
         <div id="feature_selector">
             <h3 class="title">
@@ -50,23 +60,45 @@ function displaytrail($trail){
                 <span class="checkmark"></span>
             </label>
         </div>
+
+        <div id="trails">
+            <h2>Trails</h2>
+
+            <?php
+            $trails_query = "SELECT * FROM trails";
+            $trails = $connection->query($trails_query);
+            while($row = $trails->fetch_assoc()){
+                echo displaytrail($row);
+            }
+            ?>
+
+            <script src="./js/accordian.js"></script>
+        </div>
     </div>
-	<form action="loadinfo.php" method="POST">
-		<h2>Trails</h2>
-		<table id = "trails">
-			<th>Name</th>
-			<th>Length</th>
-			<th>Difficulty</th>
-			<th>Rating Accuracy</th>
-			<th>Latitude</th>
-			<th>Longitude</th>
-			<?php
-				$trails_query = "SELECT * FROM trails";
-				$trails = $connection->query($trails_query);
-				while($row = $trails->fetch_assoc()){
-					echo displaytrail($row);
-				}
-			?>
-		</table>
-	</form>
+
+    <!--
+    <div id="trails">
+        <h2>Trails</h2>
+        <table>
+            <th>Name</th>
+            <th>Length</th>
+            <th>Difficulty</th>
+            <th>Rating Accuracy</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <?php
+                /*
+                $trails_query = "SELECT * FROM trails";
+                $trails = $connection->query($trails_query);
+                while($row = $trails->fetch_assoc()){
+                    echo displaytrailtable($row);
+                }
+                */
+            ?>
+        </table>
+    </div>
+    -->
+
+
+
 </html>

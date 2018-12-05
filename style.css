@@ -1,13 +1,4 @@
-/* Always set the map height explicitly to define the size of the div
-    * element that contains the map. */
-#map {
-    height: 100%;
-}
-
-/* Optional: Makes the sample page fill the window. */
 body {
-    height: 100%;
-    margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -35,22 +26,6 @@ th.resorts{
     font-size: 200%;
     font-variant: small-caps;
     text-align: center;
-}
-#feature_selector{
-	right: 0px;
-    position: absolute;
-	background-color: lightblue;
-	width: 20%;
-    height: 80%;
-    margin: 20px;
-    padding-left: 20px;
-}
-#map {
-    left: 0px;
-    position: absolute;
-    height: 80%;
-    width: 75%;
-    margin: 20px;
 }
 
 /* The container */
@@ -119,4 +94,60 @@ th.resorts{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+#trails {
+    height:auto;
+    position:static;
+    clear: both;
+    margin: 5px;
+    padding-top: 10px;
+}
+#feature_selector{
+    float:right;
+    background-color: lightblue;
+    width: 20%;
+    height: 500px;
+}
+#map {
+    float:left;
+    height: 500px;
+    width: 79%;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
