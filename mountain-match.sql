@@ -78,7 +78,6 @@ CREATE TABLE `trails` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `length` int(11) NOT NULL,
   `difficulty` tinyint(4) NOT NULL,
   `accuracy` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
