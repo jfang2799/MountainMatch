@@ -1,9 +1,23 @@
+/* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
 body {
+    height: 100%;
+    margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+/*h1 {
 
+}*/
 table.resorts{
+    padding-left: 22.5%;
+    padding-top: 13%;
+    padding-bottom:13%;
 	border-top: solid 5px;
 	border-color: #87cefa;
 	background: url(http://s4894.pcdn.co/wp-content/uploads/2013/01/Adodds_20120306_FW_00041.jpg);
@@ -15,17 +29,38 @@ table.resorts{
 	display: block;
 }
 tr.resorts{
+    padding-left: 50%;
 	height: 100px;
 }
 th.resorts{
 	font-size: 30px;
 	color: #87cefa;
-	padding: 40px;
+    padding: 40px;
+    border: 2px solid white;
+}
+th:hover{
+    background-color: white;
 }
 .title{
     font-size: 200%;
     font-variant: small-caps;
     text-align: center;
+}
+#feature_selector{
+	right: 0px;
+    position: absolute;
+	background-color: lightblue;
+	width: 20%;
+    height: 80%;
+    margin: 20px;
+    padding-left: 20px;
+}
+#map {
+    left: 0px;
+    position: absolute;
+    height: 80%;
+    width: 75%;
+    margin: 20px;
 }
 
 /* The container */
@@ -94,87 +129,4 @@ th.resorts{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-}
-
-#trails {
-    height:auto;
-    position:static;
-    clear: both;
-    margin: 5px;
-    padding-top: 10px;
-}
-#feature_selector{
-    padding-left: 10px;
-    float:right;
-    background-color: lightblue;
-    width: 20%;
-    height: 500px;
-}
-#map {
-    float:left;
-    height: 500px;
-    width: 79%;
-}
-
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
-
-.active, .accordion:hover {
-    background-color: #ccc;
-}
-
-.accordion:after {
-    content: '\002B';
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
-
-.active:after {
-    content: "\2212";
-}
-
-.panel {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-}
-
-.hard {
-    color: red;
-}
-
-.accurate {
-    color: limegreen;
-}
-
-.feature-table {
-    width: 100%;
-    text-align: center;
-}
-
-.feature-table th, td {
-    padding: 16px;
-    border: 1px solid #ddd;
-}
-
-.feature-table tr:nth-child(even) {
-    background-color: #cafe69;
-}
-
-.feature-table tr:hover {
-    background-color: #f5f5f5;
 }
