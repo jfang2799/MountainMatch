@@ -85,7 +85,7 @@ th.resorts:hover{
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #eee;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -106,7 +106,7 @@ th.resorts:hover{
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid black;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -123,7 +123,9 @@ th.resorts:hover{
 #feature_selector{
     padding-left: 10px;
     float:right;
-    background-color: #477bc3;
+    background-color: #2196F3;
+    border: 3px black;
+    border-radius: 3px;
     width: 20%;
     height: 500px;
     margin-right: 1em;
