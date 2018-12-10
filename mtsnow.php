@@ -6,10 +6,11 @@ $password = "[database password]";
 $dbname = "mountain-match";
 $connection = mysqli_connect($servername,$username,$password, $dbname);
 
+// generate accordion menu for each trail. Menu displays ratings and feature table
 function displaytrail($trail){
     global $connection;
     $text = "<button class='accordion'> <strong>" . $trail['name'] . " </strong>";
-    $text .= "(" . $trail['length'] . "ft)";
+
     // trails are rated 1 -5 on difficulty. Indicate rating with skulls
     $text .= " &nbsp;&nbsp;&nbsp;&nbsp;";
     for ($i = 0; $i < 5; $i++) {
@@ -34,7 +35,7 @@ function displaytrail($trail){
 
     $text .= "<div class='panel'>";
     $text .= "<table class='feature-table'>";
-    $text .= "<th>Type</th> <th>Size</th> <th>Urban</th> <th>Lip</th>";
+    $text .= "<th>Type</th> <th>Size (ft.)</th> <th>Urban</th> <th>Lip</th>";
 
     $trail_name = $trail['name'];
     $related_features_query = "SELECT type, null as size, urban, lip  
@@ -56,6 +57,7 @@ function displaytrail($trail){
 	return $text;
 }
 
+// generate table for each trail to display its features/jumps
 function generatetable($feature){
     $text = "<tr>";
     $text .= "<td>" . $feature['type'] . "</td>";
@@ -119,9 +121,13 @@ function generatetable($feature){
         </div>
 
         <div id="trails">
-            <h2>Trails</h2>
-            <h5><span class='fa fa-skull hard'></span> = Difficulty (1 - 5)</h5>
-            <h5><span class='fa fa-crosshairs accurate'></span> = Accuracy (1 - 5)</h5>
+            <div class="left">
+                <h2>Trails</h2>
+            </div>
+            <div class="right">
+                <h5><span class='fa fa-skull hard'></span> = Difficulty (1 - 5)</h5>
+                <h5><span class='fa fa-crosshairs accurate'></span> = Accuracy (1 - 5)</h5>
+            </div>
             <?php
             $trails_query = "SELECT * FROM trails";
             $trails = $connection->query($trails_query);

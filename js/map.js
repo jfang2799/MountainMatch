@@ -3,6 +3,7 @@ let jumps = [];
 let beginner = [];
 let advanced = [];
 
+// create map object, create pins
 function initialize() {
     let mapOptions = {
         zoom: 15,
@@ -17,6 +18,7 @@ function initialize() {
     drop_pins("advanced", advanced);
 }
 
+// create initial marker objects and tie them to map
 function place_marker(element, label) {
     let marker = new google.maps.Marker({
         label: label,
@@ -62,6 +64,7 @@ function remove_pins(pins) {
     }
 }
 
+// associate/de-associate markers with the map
 function update_pins() {
     let jumps_checkbox = document.getElementById("jumps");
     let beginner_checkbox = document.getElementById("beginner");
