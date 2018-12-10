@@ -7,7 +7,7 @@ let advanced = [];
 function initialize() {
     let mapOptions = {
         zoom: 15,
-        center: {lat: 42.963079045379324, lng: -72.90895879268648} // mt. snow coordinates
+        center: {lat: 42.95706098, lng: -72.90321685} // mt. snow coordinates
     };
     map = new google.maps.Map(document.getElementById('map'),
         mapOptions);
