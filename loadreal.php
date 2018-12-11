@@ -2,16 +2,16 @@
 
 // Connect to the database
 try {
-  $dbname = 'bookdaddy';
+  $dbname = 'mountain-match';
   $user = 'root';
-  $pass = 'rodeo900Japan';
+  $pass = '[database password]';
   $connect = new PDO('mysql:host=127.0.0.1;dbname='.$dbname, $user, $pass);
 }
 catch (Exception $e) {
   echo "Error: " . $e->getMessage();
 }
 
-$trails = $connect->prepare('INSERT INTO trails(name, difficulty, accuracy) VALUES(:name, :difficulty, :accuracy, :trail)');
+$trails = $connect->prepare('INSERT INTO trails(name, difficulty, accuracy) VALUES(:name, :difficulty, :accuracy)');
 
 $trails->execute(
 	[
@@ -826,7 +826,7 @@ $feature->execute(
 	]
 );
 
-$jump = $connect->prepare('INSERT INTO jumps(latitude, longitude, type, size) VALUES(:latitude, :longitude, :type, :size, :trail)');
+$jump = $connect->prepare('INSERT INTO jumps(latitude, longitude, type, size, trail) VALUES(:latitude, :longitude, :type, :size, :trail)');
 
 $jump->execute(
 	[
